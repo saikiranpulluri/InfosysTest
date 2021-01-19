@@ -10,8 +10,7 @@ interface AboutService {
 }
 
 object AboutNetwork {
-
-    // Configure retrofit to parse JSON and use coroutines
+    // To Configure retrofit to parse JSON and use coroutines
     private val retrofit = Retrofit.Builder()
         .baseUrl("https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/")
         .addConverterFactory(MoshiConverterFactory.create())

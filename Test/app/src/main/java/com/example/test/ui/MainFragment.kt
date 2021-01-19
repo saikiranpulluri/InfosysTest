@@ -21,7 +21,7 @@ class MainFragment : Fragment() {
 
     private val viewModel: MainViewModel by lazy {
         val activity = requireNotNull(this.activity) {
-            "You can only access the viewModel after onActivityCreated()"
+            "This is to initialize check if we are accessing viewmodel only after onActivityCreated()"
         }
         ViewModelProvider(this, MainViewModel.Factory(activity.application))
             .get(MainViewModel::class.java)
@@ -68,7 +68,7 @@ class MainFragment : Fragment() {
 
     private fun onNetworkError() {
         if (!viewModel.isNetworkErrorShown.value!!) {
-            Toast.makeText(activity, "Network Error", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, getString(R.string.network_error), Toast.LENGTH_LONG).show()
             viewModel.onNetworkErrorShown()
         }
     }

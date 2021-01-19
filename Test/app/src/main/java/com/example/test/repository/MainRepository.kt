@@ -21,7 +21,7 @@ class MainRepository(private val database: AboutDatabase) {
         withContext(Dispatchers.IO) {
             Timber.d("refresh about is called")
             val playlist = AboutNetwork.aboutService.getAboutList()
-            database.aboutDao.deleteAll()
+            /*database.aboutDao.deleteAll()*/
             database.aboutDao.insertAll(playlist.asDatabaseModel())
         }
     }
