@@ -19,6 +19,7 @@ import com.example.test.viewmodels.MainViewModel
 
 class MainFragment : Fragment() {
 
+    private lateinit var bind: FragmentMainBinding
     private val viewModel: MainViewModel by lazy {
         val activity = requireNotNull(this.activity) {
             "This is to initialize check if we are accessing viewmodel only after onActivityCreated()"
@@ -34,6 +35,7 @@ class MainFragment : Fragment() {
         viewModel.aboutList.observe(viewLifecycleOwner, { aboutList ->
             aboutList?.apply {
                 viewModelAdapter?.aboutList = aboutList
+                bind.swipeRefreshLayout.isRefreshing = false
             }
         })
     }
@@ -52,7 +54,7 @@ class MainFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-
+        bind = binding
         viewModelAdapter = DevByteAdapter()
 
         binding.root.findViewById<RecyclerView>(R.id.recycler_view).apply {
@@ -63,6 +65,10 @@ class MainFragment : Fragment() {
         viewModel.eventNetworkError.observe(viewLifecycleOwner, { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.refreshDataFromRepository()
+        }
         return binding.root
     }
 

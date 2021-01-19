@@ -5,28 +5,33 @@
     tools:context=".ui.MainFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.test.viewmodels.MainViewModel" />
     </data>
 
-    <FrameLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/background_grey">
-
-        <ProgressBar
-            android:id="@+id/loading_spinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:isNetworkError = "@{safeUnbox(viewModel.eventNetworkError)}"
-            app:aboutList = "@{viewModel.aboutList}"
-            android:layout_gravity="center" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/main_item" />
-    </FrameLayout>
+            android:layout_height="match_parent">
+            <ProgressBar
+                android:id="@+id/loading_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:aboutList="@{viewModel.aboutList}"
+                app:isNetworkError="@{safeUnbox(viewModel.eventNetworkError)}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/main_item" />
+        </FrameLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

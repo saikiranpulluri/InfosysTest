@@ -23,7 +23,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         refreshDataFromRepository()
     }
 
-    private fun refreshDataFromRepository() {
+    fun refreshDataFromRepository() {
         viewModelScope.launch {
             try {
                 mainRepository.refreshData()
