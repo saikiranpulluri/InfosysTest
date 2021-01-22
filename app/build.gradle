@@ -39,7 +39,7 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:4.13.1'
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -61,7 +61,7 @@ dependencies {
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
 
     // coroutines for getting off the UI thread
-    def coroutines = "1.0.1"
+    def coroutines = "1.4.2"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
@@ -93,11 +93,17 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     // Room dependency
-    def room_version = "2.2.0"
+    def room_version = "2.2.6"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     // WorkManager dependency
     def work_version = "1.0.1"
     implementation "android.arch.work:work-runtime-ktx:$work_version"
+
+    // AndroidX Test - JVM testing
+    testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+    testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
+    testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
 }

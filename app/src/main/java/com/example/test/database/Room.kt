@@ -9,8 +9,14 @@ interface AboutDao {
     @Query("select * from aboutdatabasemodel")
     fun getAboutList(): LiveData<List<AboutDatabaseModel>>
 
+    @Query("select * from aboutdatabasemodel where title =:title")
+    fun findRow(title: String): AboutDatabaseModel
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(videos: List<AboutDatabaseModel>)
+    fun insertAll(aboutModels: List<AboutDatabaseModel>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(about: AboutDatabaseModel)
 
     @Query("DELETE FROM aboutdatabasemodel")
     fun deleteAll()
@@ -18,6 +24,10 @@ interface AboutDao {
 
 @Database(entities = [AboutDatabaseModel::class], version = 1)
 abstract class AboutDatabase : RoomDatabase() {
+    fun aboutDao(): AboutDao {
+        return aboutDao
+    }
+
     abstract val aboutDao: AboutDao
 }
 

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="row"
-            type="com.example.test.domain.AboutDomainModel" />
+            type="com.example.test.database.AboutDatabaseModel" />
     </data>
     <!--<com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

@@ -2,22 +2,21 @@ package com.example.test.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.test.domain.AboutDomainModel
 
 @Entity
 data class AboutDatabaseModel constructor(
     @PrimaryKey
     val title: String,
     val description: String,
-    val imgHref: String
+    val imageHref: String
 )
 
-fun List<AboutDatabaseModel>.asDomainModel(): List<AboutDomainModel> {
+fun List<AboutDatabaseModel>.asDomainModel(): List<AboutDatabaseModel> {
     return map {
-        AboutDomainModel(
+        AboutDatabaseModel(
             title = it.title,
             description = it.description,
-            imageHref = it.imgHref
+            imageHref = it.imageHref
         )
     }
 }
